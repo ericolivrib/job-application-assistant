@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { randomUUID, UUID } from "node:crypto";
 import { JobApplication } from "../model/job-application.model";
 
 const jobApplications: JobApplication[] = [
@@ -21,4 +21,14 @@ const jobApplications: JobApplication[] = [
 
 export async function getJobApplications(): Promise<JobApplication[]> {
     return jobApplications;
+}
+
+export async function getJobApplicationById(id: UUID): Promise<JobApplication> {
+    const job = jobApplications.find((job) => job.id === id);
+
+    if (!job) {
+        throw new Error('Vaga de emprego não encontrada');
+    }
+
+    return job;
 }

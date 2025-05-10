@@ -5,5 +5,6 @@ import * as jobApplicationController from '../controller/job-application.control
 const jobApplicationRouter = express.Router();
 
 jobApplicationRouter.get('/', jobApplicationController.getJobApplications);
+jobApplicationRouter.get('/:id', jobApplicationController.getJobApplicationById);
 
 export { jobApplicationRouter };
