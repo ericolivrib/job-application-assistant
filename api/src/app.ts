@@ -1,8 +1,8 @@
 import express from 'express';
+import { serverConfig } from './config/server.config';
 
 const app = express();
 
-const host: string = String(process.env.SERVER_HOST);
-const port: number = Number(process.env.SERVER_PORT);
+const { port, host, url } = serverConfig;
 
-app.listen(port, host, () => console.info(`Servidor rodando em ${host}:${port}`));
+app.listen(port, host, () => console.info(`Servidor rodando em ${url}`));
