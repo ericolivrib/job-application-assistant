@@ -1,12 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import { serverConfig } from './config/server.config';
+import { serverEnv } from './env/server.env';
 import { router } from './router';
+import { mongoEnv } from './env/mongo.env';
 
-const mongodbUrl = String(process.env.MONGODB_URL);
+const { url: mongoUrl } = mongoEnv;
 
-mongoose.connect(mongodbUrl)
+mongoose.connect(mongoUrl)
     .then((_) => console.info('DB connected'))
     .catch((_) => console.error('DB failed'));
 
@@ -14,6 +15,6 @@ const app = express();
 app.use(express.json());
 app.use(router);
 
-const { port, host, url } = serverConfig;
+const { port, host, url } = serverEnv;
 
 app.listen(port, host, () => console.info(`Servidor rodando em ${url}`));
