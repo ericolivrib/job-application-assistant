@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 
-import JobApplication from '../model/job-application.model';
+import { JobApplication } from '../model/job-application.model';
 import { CreateJobApplicationDto } from "../dto/job-application-request.dto";
 import { JobApplicationDto } from '../dto/job-application.dto';
 
