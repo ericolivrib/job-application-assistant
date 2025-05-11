@@ -1,7 +1,16 @@
-import { UUID } from "node:crypto";
+import mongoose from 'mongoose';
 
-export class JobApplication {
-    id!: UUID;
-    description!: string;
-    url!: string;
-}
+// type JobApplicationType = {
+//     description: string;
+//     url: string;
+//     keywords: string[];
+// }
+
+const JobApplicationSchema = new mongoose.Schema({
+    description: String,
+    url: String,
+    keywords: [String]
+});
+
+const JobApplication = mongoose.model('JobApplication', JobApplicationSchema);
+export default JobApplication;
