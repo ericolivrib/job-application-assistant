@@ -12,3 +12,8 @@ export async function createUser(req: Request, res: Response) {
 
     res.status(201).location(location).send();
 }
+
+export async function getUsers(req: Request, res: Response) {
+    const users = await userService.getUsers();
+    res.status(200).json(users);
+}

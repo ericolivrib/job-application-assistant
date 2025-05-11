@@ -5,6 +5,7 @@ import * as userController from '../controller/user.controller';
 const userRouter = express.Router();
 
 userRouter.post('/', userController.createUser);
+userRouter.get('/', userController.getUsers);
 
 export { userRouter };
 
