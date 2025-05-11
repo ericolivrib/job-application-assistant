@@ -32,3 +32,10 @@ export async function getJobApplicationById(id: UUID): Promise<JobApplication> {
 
     return job;
 }
+
+export async function createJobApplication(jobApplication: JobApplication): Promise<UUID> {
+    const id = randomUUID();
+    jobApplications.push({ ...jobApplication, id });
+
+    return id;
+}
