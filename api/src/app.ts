@@ -15,6 +15,10 @@ const app = express();
 app.use(express.json());
 app.use(router);
 
+app.use((error, req, res, next) => {
+    // TODO:
+});
+
 const { port, host, url } = serverEnv;
 
 app.listen(port, host, () => console.info(`Servidor rodando em ${url}`));
