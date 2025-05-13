@@ -1,8 +1,14 @@
 import mongoose from 'mongoose';
 
 const JobApplicationSchema = new mongoose.Schema({
-    description: String,
-    url: String,
+    description: {
+        type: String,
+        required: true
+    },
+    url: {
+        type: String,
+        required: true
+    },
     keywords: [String]
 });
 
