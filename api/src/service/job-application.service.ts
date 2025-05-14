@@ -1,8 +1,9 @@
 import { Types } from "mongoose";
 
 import { JobApplication } from '../model/job-application.model';
-import { CreateJobApplicationDto } from "../dto/job-application-request.dto";
+import { CreateJobApplicationDto } from "../dto/create-job-application.dto";
 import { JobApplicationDto } from '../dto/job-application.dto';
+import { NotFoundError } from "../exception/not-found.error";
 
 export async function getJobApplications(): Promise<JobApplicationDto[]> {
     const jobApplications = await JobApplication.find();
@@ -13,7 +14,7 @@ export async function getJobApplicationById(id: Types.ObjectId): Promise<JobAppl
     const job = await JobApplication.findById(id);
 
     if (!job) {
-        throw new Error('Aplicação de Vaga não encontrada');
+        throw new NotFoundError('Aplicação de Vaga não encontrada');
     }
 
     return new JobApplicationDto(job._id, job.description as string, job.url as string, job.keywords);

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as jobApplicationService from "../service/job-application.service";
 import { serverEnv } from "../env/server.env";
-import { CreateJobApplicationDto } from "../dto/job-application-request.dto";
+import { CreateJobApplicationDto } from "../dto/create-job-application.dto";
 import { Types } from "mongoose";
 
 export async function getJobApplications(_: Request, res: Response) {
