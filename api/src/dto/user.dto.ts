@@ -6,10 +6,7 @@ export class UserDto {
     readonly email!: string;
     readonly skills!: string[];
 
-    constructor(id: Types.ObjectId, name: string, email: string, skills: string[]) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.skills = skills;
+    constructor(props?: Partial<UserDto>) {
+        Object.assign(this, props);
     }
 }

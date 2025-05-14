@@ -20,5 +20,10 @@ export async function createUser(dto: CreateUserDto): Promise<Types.ObjectId> {
 
 export async function getUsers(): Promise<UserDto[]> {
     const users = await User.find();
-    return users.map((u) => new UserDto(u._id, u.name, u.email, u.skills));
+    return users.map((user) => new UserDto({
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        skills: user.skills
+    }));
 }

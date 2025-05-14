@@ -7,17 +7,27 @@ import { NotFoundError } from "../exception/not-found.error";
 
 export async function getJobApplications(): Promise<JobApplicationDto[]> {
     const jobApplications = await JobApplication.find();
-    return jobApplications.map((ja) => new JobApplicationDto(ja._id, ja.description as string, ja.url as string, ja.keywords));
+    return jobApplications.map((ja) => new JobApplicationDto({
+        id: ja._id,
+        description: ja.description,
+        url: ja.url,
+        keywords: ja.keywords
+    }));
 }
 
 export async function getJobApplicationById(id: Types.ObjectId): Promise<JobApplicationDto> {
-    const job = await JobApplication.findById(id);
+    const jobApplication = await JobApplication.findById(id);
 
-    if (!job) {
+    if (!jobApplication) {
         throw new NotFoundError('Aplicação de Vaga não encontrada');
     }
 
-    return new JobApplicationDto(job._id, job.description as string, job.url as string, job.keywords);
+    return new JobApplicationDto({
+        id: jobApplication._id,
+        description: jobApplication.description,
+        url: jobApplication.url,
+        keywords: jobApplication.keywords
+    });
 }
 
 export async function createJobApplication(dto: CreateJobApplicationDto): Promise<Types.ObjectId> {
