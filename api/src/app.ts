@@ -9,16 +9,12 @@ const { url: mongoUrl } = mongoEnv;
 
 mongoose.connect(mongoUrl)
     .then((_) => console.info('DB connected'))
-    .catch((_) => console.error('DB failed'));
+    .catch((error) => console.error('DB failed: ' + error));
 
 const app = express();
 app.use(express.json());
 app.use(router);
 
-app.use((error, req, res, next) => {
-    // TODO:
-});
-
-const { port, host, url } = serverEnv;
+const { port, host, url } = serverEnv
 
 app.listen(port, host, () => console.info(`Servidor rodando em ${url}`));
